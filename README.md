@@ -27,6 +27,6 @@
 
   - Após o cadastro, o programa exibirá uma lista de todas as cartas (cidades) cadastradas. Você pode escolher duas cartas para comparar
   
-  **Durante a comparação, o programa irá exibir:**
+    **Durante a comparação, o programa irá exibir:**
   - Quem venceu em cada critério (Densidade Populacional, População, Área, PIB, Pontos Turísticos e Super Poder).
   - O vencedor geral da comparação ou um empate.
