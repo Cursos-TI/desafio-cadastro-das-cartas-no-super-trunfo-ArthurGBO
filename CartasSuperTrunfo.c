@@ -190,7 +190,7 @@ int main() {
     for (int i = 0; i < contador; i++) {
         // Densidade populacional e PIB per capita
         double densidade_populacional = populacao[i] / area[i];
-        double pib_per_capita = pib[i] * 1e9 / populacao[i];
+        double pib_per_capita = pib[i] * 1e3 / populacao[i];
 
         printf("\nCarta %d:\n", i + 1);
         printf("Código: %s\n", codigo[i]);
