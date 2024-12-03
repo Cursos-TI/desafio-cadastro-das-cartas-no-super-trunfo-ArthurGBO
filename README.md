@@ -16,7 +16,7 @@
 1. Cadastrar cartas
   
   - O programa solicitará a inserção dos seguintes dados:
-    - Código da cidade (Atualmente não tem função)
+    - Código da cidade
     - Nome da cidade
     - População
     - Área
