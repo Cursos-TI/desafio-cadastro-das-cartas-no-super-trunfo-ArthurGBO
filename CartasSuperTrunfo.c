@@ -22,8 +22,8 @@ double calcular_super_poder(float populacao, double area, double pib, int pontos
 }
 
 // Função para comparar duas cidades
-void comparar_cartas(int i, int j, float populacao[], double area[], double pib[], int pontos_turisticos[]) {
-    printf("\nComparando cartas %d e %d\n", i+1, j+1);
+void comparar_cartas(int i, int j, char codigo[MAX_CARTAS][5], float populacao[], double area[], double pib[], int pontos_turisticos[]) {
+    printf("\nComparando cartas %s e %s\n", codigo[i], codigo[j]);
     
     // Comparação das propriedades
     double densidade_populacional_i = populacao[i] / area[i];
@@ -36,50 +36,50 @@ void comparar_cartas(int i, int j, float populacao[], double area[], double pib[
     int pontos_i = 0, pontos_j = 0;
 
     if (densidade_populacional_i < densidade_populacional_j) {
-        printf("Densidade Populacional: Carta %d ganhou (%.2f vs %.2f)\n", i+1, densidade_populacional_i, densidade_populacional_j);
+        printf("Densidade Populacional: Carta %s ganhou (%.2f vs %.2f)\n", codigo[i], densidade_populacional_i, densidade_populacional_j);
         pontos_i++;
     } else if (densidade_populacional_i > densidade_populacional_j) {
-        printf("Densidade Populacional: Carta %d ganhou (%.2f vs %.2f)\n", j+1, densidade_populacional_j, densidade_populacional_i);
+        printf("Densidade Populacional: Carta %s ganhou (%.2f vs %.2f)\n", codigo[j], densidade_populacional_j, densidade_populacional_i);
         pontos_j++;
     } else {
         printf("Densidade Populacional: Empate (%.2f vs %.2f)\n", densidade_populacional_i, densidade_populacional_j);
     }
 
     if (populacao[i] > populacao[j]) {
-        printf("População: Carta %d ganhou (%.2f milhões vs %.2f milhões)\n", i+1, populacao[i], populacao[j]);
+        printf("População: Carta %s ganhou (%.2f milhões vs %.2f milhões)\n", codigo[i], populacao[i], populacao[j]);
         pontos_i++;
     } else if (populacao[i] < populacao[j]) {
-        printf("População: Carta %d ganhou (%.2f milhões vs %.2f milhões)\n", j+1, populacao[j], populacao[i]);
+        printf("População: Carta %s ganhou (%.2f milhões vs %.2f milhões)\n", codigo[j], populacao[j], populacao[i]);
         pontos_j++;
     } else {
         printf("População: Empate (%.2f milhões vs %.2f milhões)\n", populacao[i], populacao[j]);
     }
 
     if (area[i] > area[j]) {
-        printf("Área: Carta %d ganhou (%.2lf km² vs %.2lf km²)\n", i+1, area[i], area[j]);
+        printf("Área: Carta %s ganhou (%.2lf km² vs %.2lf km²)\n", codigo[i], area[i], area[j]);
         pontos_i++;
     } else if (area[i] < area[j]) {
-        printf("Área: Carta %d ganhou (%.2lf km² vs %.2lf km²)\n", j+1, area[j], area[i]);
+        printf("Área: Carta %s ganhou (%.2lf km² vs %.2lf km²)\n", codigo[j], area[j], area[i]);
         pontos_j++;
     } else {
         printf("Área: Empate (%.2lf km² vs %.2lf km²)\n", area[i], area[j]);
     }
 
     if (pib[i] > pib[j]) {
-        printf("PIB: Carta %d ganhou (R$ %.1lf bilhões vs R$ %.1lf bilhões)\n", i+1, pib[i], pib[j]);
+        printf("PIB: Carta %s ganhou (R$ %.1lf bilhões vs R$ %.1lf bilhões)\n", codigo[i], pib[i], pib[j]);
         pontos_i++;
     } else if (pib[i] < pib[j]) {
-        printf("PIB: Carta %d ganhou (R$ %.1lf bilhões vs R$ %.1lf bilhões)\n", j+1, pib[j], pib[i]);
+        printf("PIB: Carta %s ganhou (R$ %.1lf bilhões vs R$ %.1lf bilhões)\n", codigo[j], pib[j], pib[i]);
         pontos_j++;
     } else {
         printf("PIB: Empate (R$ %.1lf bilhões vs R$ %.1lf bilhões)\n", pib[i], pib[j]);
     }
 
     if (pontos_turisticos[i] > pontos_turisticos[j]) {
-        printf("Pontos turísticos: Carta %d ganhou (%d vs %d)\n", i+1, pontos_turisticos[i], pontos_turisticos[j]);
+        printf("Pontos turísticos: Carta %s ganhou (%d vs %d)\n", codigo[i], pontos_turisticos[i], pontos_turisticos[j]);
         pontos_i++;
     } else if (pontos_turisticos[i] < pontos_turisticos[j]) {
-        printf("Pontos turísticos: Carta %d ganhou (%d vs %d)\n", j+1, pontos_turisticos[j], pontos_turisticos[i]);
+        printf("Pontos turísticos: Carta %s ganhou (%d vs %d)\n", codigo[j], pontos_turisticos[j], pontos_turisticos[i]);
         pontos_j++;
     } else {
         printf("Pontos turísticos: Empate (%d vs %d)\n", pontos_turisticos[i], pontos_turisticos[j]);
@@ -87,10 +87,10 @@ void comparar_cartas(int i, int j, float populacao[], double area[], double pib[
 
     // Comparação do Super Poder
     if (super_poder_i > super_poder_j) {
-        printf("Super Poder: Carta %d ganhou (%.2f vs %.2f)\n", i+1, super_poder_i, super_poder_j);
+        printf("Super Poder: Carta %s ganhou (%.2f vs %.2f)\n", codigo[i], super_poder_i, super_poder_j);
         pontos_i++;
     } else if (super_poder_i < super_poder_j) {
-        printf("Super Poder: Carta %d ganhou (%.2f vs %.2f)\n", j+1, super_poder_j, super_poder_i);
+        printf("Super Poder: Carta %s ganhou (%.2f vs %.2f)\n", codigo[j], super_poder_j, super_poder_i);
         pontos_j++;
     } else {
         printf("Super Poder: Empate (%.2f vs %.2f)\n", super_poder_i, super_poder_j);
@@ -98,16 +98,16 @@ void comparar_cartas(int i, int j, float populacao[], double area[], double pib[
 
     // Determinando a carta vencedora
     if (pontos_i > pontos_j) {
-        printf("\nA Carta %d foi a vencedora geral!\n", i+1);
+        printf("\nA Carta %s foi a vencedora geral!\n", codigo[i]);
     } else if (pontos_j > pontos_i) {
-        printf("\nA Carta %d foi a vencedora geral!\n", j+1);
+        printf("\nA Carta %s foi a vencedora geral!\n", codigo[j]);
     } else {
         printf("\nEmpate!\n");
     }
 }
 
 int main() {
-    char codigo[MAX_CARTAS][10];  
+    char codigo[MAX_CARTAS][5];  
     char nome[MAX_CARTAS][30];
     float populacao[MAX_CARTAS];
     double area[MAX_CARTAS];
@@ -121,7 +121,9 @@ int main() {
         printf("\nInsira o código da cidade: ");
         fgets(codigo[contador], sizeof(codigo[contador]), stdin);
         // Remover o caractere de nova linha no final, caso exista
-        codigo[contador][strcspn(codigo[contador], "\n")] = 0;
+        codigo[contador][strcspn(codigo[contador], "\n")] = 0;{
+        getchar();}
+
 
         // Nome da cidade (validação)
         int nome_valido = 0;
@@ -189,13 +191,13 @@ int main() {
     printf("\n--- Dados das Cidades Cadastradas ---\n");
     for (int i = 0; i < contador; i++) {
         // Densidade populacional e PIB per capita
-        double densidade_populacional = populacao[i] * 1e6/ area[i];
+        double densidade_populacional = populacao[i] * 1e6 / area[i];
         double pib_per_capita = pib[i] * 1e3 / populacao[i];
 
         printf("\nCarta %d:\n", i + 1);
         printf("Código: %s\n", codigo[i]);
         printf("Nome: %s\n", nome[i]);
-        printf("População: %.2f\n", populacao[i]);  // Usando %.2f para mostrar duas casas decimais
+        printf("População: %.2f milhões de habitantes\n ", populacao[i]);
         printf("Área: %.2lf km²\n", area[i]);
         printf("PIB: %.1lf bilhões de reais\n", pib[i]);
         printf("Número de pontos turísticos: %d\n", pontos_turisticos[i]);
@@ -203,36 +205,47 @@ int main() {
         printf("PIB per Capita: R$ %.2f\n", pib_per_capita);
     }
 
-        // Loop para comparar cartas
-    char comparar_mais;
-    do {
-        // Escolher duas cartas para comparar
-        if (contador > 1) {
-            int carta1, carta2;
-            printf("\nEscolha duas cartas para comparar (números de 1 a %d):\n", contador);
-            
-            printf("Digite o número da primeira carta: ");
-            scanf("%d", &carta1);
-            carta1--;  // Ajuste para índice começar em 0
+// Loop para comparar cartas
+char comparar_mais;
+do {
+    // Escolher duas cartas para comparar
+    if (contador > 1) {
+        char codigo1[5], codigo2[5];
+        int carta1 = -1, carta2 = -1;
 
-            printf("Digite o número da segunda carta: ");
-            scanf("%d", &carta2);
-            carta2--;  // Ajuste para índice começar em 0
+        printf("\nEscolha duas cartas para comparar\n");
 
-            // Verifica se as escolhas são válidas
-            if (carta1 >= 0 && carta1 < contador && carta2 >= 0 && carta2 < contador) {
-                comparar_cartas(carta1, carta2, populacao, area, pib, pontos_turisticos);
-            } else {
-                printf("Escolhas de cartas inválidas. Tente novamente.\n");
+        printf("Digite o código da primeira carta: ");
+        scanf("%4s", codigo1);  // %4s limita a leitura a 4 caracteres, evitando overflow
+
+        printf("Digite o código da segunda carta: ");
+        scanf("%4s", codigo2);
+
+        // Encontrar índices correspondentes aos códigos
+        for (int i = 0; i < contador; i++) {
+            if (strcmp(codigo[i], codigo1) == 0) {
+                carta1 = i;
             }
-        } else {
-            printf("Não há cartas suficientes para comparação.\n");
+            if (strcmp(codigo[i], codigo2) == 0) {
+                carta2 = i;
+            }
         }
 
-        // Pergunta ao usuário se deseja continuar comparando
-        printf("\nDeseja comparar mais cartas? (s/n): ");
-        scanf(" %c", &comparar_mais);  // O espaço antes de %c é para limpar o buffer
-    } while (comparar_mais == 's' || comparar_mais == 'S');
+        // Verifica se os códigos são válidos
+        if (carta1 != -1 && carta2 != -1) {
+            comparar_cartas(carta1, carta2, codigo, populacao, area, pib, pontos_turisticos);
+        } else {
+            printf("Escolhas de cartas inválidas. Tente novamente.\n");
+        }
+    } else {
+        printf("Não há cartas suficientes para comparação.\n");
+    }
+
+    printf("\nDeseja comparar mais cartas? (s/n): ");
+    scanf(" %c", &comparar_mais);  // Lê a resposta do usuário
+    getchar();  // Limpa o buffer de entrada
+
+} while (comparar_mais == 's' || comparar_mais == 'S');
 
     return 0;
 }
