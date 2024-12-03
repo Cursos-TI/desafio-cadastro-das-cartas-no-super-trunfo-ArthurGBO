@@ -189,7 +189,7 @@ int main() {
     printf("\n--- Dados das Cidades Cadastradas ---\n");
     for (int i = 0; i < contador; i++) {
         // Densidade populacional e PIB per capita
-        double densidade_populacional = populacao[i] / area[i];
+        double densidade_populacional = populacao[i] * 1e3 / area[i];
         double pib_per_capita = pib[i] * 1e3 / populacao[i];
 
         printf("\nCarta %d:\n", i + 1);
